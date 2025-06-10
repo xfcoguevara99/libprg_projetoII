@@ -1,7 +1,0 @@
-# ninja log v6
-2	187	7712304673287886	CMakeFiles/libprg.dir/src/structs/fila.c.obj	ca1ed9c73736a57d
-7	197	7712304673334371	CMakeFiles/libprg.dir/src/structs/lista.c.obj	2db45fba4c1097e2
-1769	1938	7712304690954530	libprg_projetoII.exe	2cb03e1f420dba24
-10	194	7712304673364367	CMakeFiles/libprg.dir/src/structs/pilha.c.obj	bae71e55f85e1925
-188	389	7712304675140661	CMakeFiles/libprg_projetoII.dir/src/main.c.obj	df394680be67b11c
-198	1769	7712304675241402	liblibprg.a	38d19c5537447eb
