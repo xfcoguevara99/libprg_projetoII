@@ -4,5 +4,5 @@
 #include <stdio.h>
 #include "../header/fila.h"
 int soma(int a,int b){
-  return printf("eh esse o resultado %d",a+b);
+  return printf("eh esse o resultado da soma %d",a+b);
  }
