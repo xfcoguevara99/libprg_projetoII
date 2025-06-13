@@ -6,6 +6,6 @@
 
 int main(){
 cartao_n *cartao;
-criar
-
+criar_cartao(&cartao,"francisco","diversos problemas de conexão",3);
+apagar_cartao(&cartao);
 };

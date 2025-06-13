@@ -6,4 +6,5 @@
 #define CARTAO_H
 typedef struct cartao cartao_n;
 void criar_cartao(cartao_n **cartao,char *nome,char *descricao,int prioridade);
+void apagar_cartao(cartao_n **cartao);
 #endif //CARTAO_H
