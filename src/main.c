@@ -2,8 +2,10 @@
 // Created by francisco on 6/10/2025.
 //
 #include <stdio.h>
-int main(){
+#include "cartao.h"
 
-printf("hola mundooooo");
+int main(){
+cartao_n *cartao;
+criar
 
 };

@@ -4,5 +4,5 @@
 
 #ifndef FILA_H
 #define FILA_H
-int soma(int a, int b);
+
 #endif //FILA_H
