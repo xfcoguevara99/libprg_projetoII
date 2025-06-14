@@ -9,7 +9,7 @@
 typedef struct cartao{
     char *nome;
     char *descripcao_problema;
-    int prioridade=0;
+    int prioridade;
     char **pilha_acoes;
     int ordem;
 }cartao_n;
@@ -20,4 +20,9 @@ void criar_cartao(cartao_n **cartao,char *nome,char *descricao,int prioridade) {
     (*cartao)->descripcao_problema = descricao;
     (*cartao)->prioridade = prioridade;
     (*cartao)->ordem = 0;
+}
+void apagar_cartao(cartao_n **cartao) {
+    free((*cartao)->pilha_acoes);
+    free(*cartao);
+
 }
