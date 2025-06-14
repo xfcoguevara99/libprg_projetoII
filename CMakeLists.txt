@@ -10,7 +10,6 @@ add_library(libprg
         src/structs/lista_enc.c
         src/structs/pilha.c
         src/structs/cartao.c
-        src/structs/no_list_enc.c
 )
 target_include_directories(libprg PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src/header

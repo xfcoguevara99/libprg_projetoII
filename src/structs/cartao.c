@@ -24,5 +24,5 @@ void criar_cartao(cartao_n **cartao,char *nome,char *descricao,int prioridade) {
 void apagar_cartao(cartao_n **cartao) {
     free((*cartao)->pilha_acoes);
     free(*cartao);
-
+    *cartao = NULL;
 }
