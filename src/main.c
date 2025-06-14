@@ -6,6 +6,6 @@
 
 int main(){
 cartao_n *cartao;
-criar
+criar_cartao()
 
 };
