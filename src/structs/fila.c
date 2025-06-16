@@ -14,7 +14,7 @@ typedef struct fila {
     int tamanho;
 } fila_t;
 
-fila_t *crear_fila() {
+fila_t *criar_fila() {
     // Criar a estrutura fila e aloca memória
     fila_t *fila = (fila_t *) malloc(sizeof(fila_t));
     // Alocar memória para os elementos da fila

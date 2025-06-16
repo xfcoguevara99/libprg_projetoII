@@ -7,7 +7,7 @@
 #define CAPACIDADE_INICIAL_FILA 30
 typedef struct fila fila_t;
 
-fila_t *crear_fila();
+fila_t *criar_fila();
 
 void adicionar_na_fila(fila_t **fila, cartao_n **cartao);
 
