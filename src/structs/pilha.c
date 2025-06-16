@@ -10,36 +10,34 @@ typedef struct pilha {
     char **acoes;
     int topo;
     int capacidade;
-}pilha_acoes;
+} pilha_acoes;
 
 pilha_acoes *criar_pilha() {
     pilha_acoes *pilha = malloc(sizeof(pilha_acoes));
-    pilha->acoes = malloc(sizeof(char*)*CAPACIDADE_INICIAL_PILHA);
-    for (int i = 0; i < CAPACIDADE_INICIAL_PILHA ; i++) {
-        pilha->acoes[i] = malloc(sizeof(char)*TAMANHO_DA_STRING);
+    pilha->acoes = malloc(sizeof(char *) * CAPACIDADE_INICIAL_PILHA);
+    for (int i = 0; i < CAPACIDADE_INICIAL_PILHA; i++) {
+        pilha->acoes[i] = malloc(sizeof(char) * TAMANHO_DA_STRING);
     }
     pilha->topo = -1;
     pilha->capacidade = CAPACIDADE_INICIAL_PILHA;
     return pilha;
 }
 
-void cadastrar_acao(pilha_acoes **pilha,char *descricao) {
+void cadastrar_acao(pilha_acoes **pilha, char *descricao) {
     int topo = (*pilha)->topo + 1;
     if ((*pilha)->topo != (*pilha)->capacidade) {
-        strcpy((*pilha)->acoes[topo],descricao);
+        strcpy((*pilha)->acoes[topo], descricao);
         (*pilha)->topo++;
-    }else {
+    } else {
         printf("Pilha cheia!!");
         printf("Nao e possivel cadastrar mais operacoes.");
-
     }
 }
 
 void desfazer_acao(pilha_acoes **pilha) {
-    if ((*pilha)->topo >=0) {
+    if ((*pilha)->topo >= 0) {
         (*pilha)->topo--;
-
-    }else {
+    } else {
         printf("Pilha vazia.");
         printf("Nehuma acao cadastrada.");
     }

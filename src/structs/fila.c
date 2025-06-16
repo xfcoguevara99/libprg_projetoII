@@ -5,28 +5,30 @@
 #include "fila.h"
 #include <stdlib.h>
 #include "cartao.h"
+
 typedef struct fila {
     cartao_n **cartoes;
     int head;
     int tail;
     int capacidade;
     int tamanho;
-}fila_t;
+} fila_t;
 
 fila_t *crear_fila() {
     // Criar a estrutura fila e aloca memória
-    fila_t *fila = (fila_t*)malloc(sizeof(fila_t));
+    fila_t *fila = (fila_t *) malloc(sizeof(fila_t));
     // Alocar memória para os elementos da fila
-    fila->cartoes = malloc(sizeof(cartao_n*) * CAPACIDADE_INICIAL_FILA);
+    fila->cartoes = malloc(sizeof(cartao_n *) * CAPACIDADE_INICIAL_FILA);
     // Definir os valores iniciais da fila
-    fila->head= 0;
+    fila->head = 0;
     fila->tail = 0;
     fila->capacidade = CAPACIDADE_INICIAL_FILA;
-    fila->tamanho= 0;
+    fila->tamanho = 0;
     return fila;
 }
-void adicionar_na_fila(fila_t **fila,cartao_n **cartao) {
-    if ((*fila)-> tamanho == (*fila)->capacidade) {
+
+void adicionar_na_fila(fila_t **fila, cartao_n **cartao) {
+    if ((*fila)->tamanho == (*fila)->capacidade) {
         printf("Erro: Fila cheia (overflow)");
         exit(EXIT_FAILURE);
     }
