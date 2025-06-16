@@ -4,12 +4,12 @@
 #include "cartao.h"
 #ifndef FILA_H
 #define FILA_H
-#define CAPACIDADE_INICIAL_FILA 30
+#define CAPACIDADE_INICIAL_FILA 40
 typedef struct fila fila_t;
 
 fila_t *criar_fila();
 
-void adicionar_na_fila(fila_t **fila, cartao_n **cartao);
+void adicionar_na_fila(fila_t **fila, cartao_n *cartao);
 
 cartao_n *proximo_da_fila(fila_t **fila);
 #endif //FILA_H

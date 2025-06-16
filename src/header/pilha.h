@@ -4,7 +4,7 @@
 
 #ifndef PILHA_H
 #define PILHA_H
-#define CAPACIDADE_INICIAL_PILHA 15
+#define CAPACIDADE_INICIAL_PILHA 20
 #define TAMANHO_DA_STRING 128
 typedef struct pilha pilha_acoes;
 

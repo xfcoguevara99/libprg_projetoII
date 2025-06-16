@@ -7,7 +7,7 @@
 #include "cartao.h"
 
 typedef struct fila {
-    cartao_n **cartoes;
+    cartao_n *cartoes[CAPACIDADE_INICIAL_FILA];
     int head;
     int tail;
     int capacidade;
@@ -15,11 +15,7 @@ typedef struct fila {
 } fila_t;
 
 fila_t *criar_fila() {
-    // Criar a estrutura fila e aloca memória
     fila_t *fila = (fila_t *) malloc(sizeof(fila_t));
-    // Alocar memória para os elementos da fila
-    fila->cartoes = malloc(sizeof(cartao_n *) * CAPACIDADE_INICIAL_FILA);
-    // Definir os valores iniciais da fila
     fila->head = 0;
     fila->tail = 0;
     fila->capacidade = CAPACIDADE_INICIAL_FILA;
@@ -27,13 +23,13 @@ fila_t *criar_fila() {
     return fila;
 }
 
-void adicionar_na_fila(fila_t **fila, cartao_n **cartao) {
+void adicionar_na_fila(fila_t **fila, cartao_n *cartao) {
     if ((*fila)->tamanho == (*fila)->capacidade) {
         printf("Erro: Fila cheia (overflow)");
         exit(EXIT_FAILURE);
     }
     if ((*fila)->cartoes[(*fila)->tail] != NULL) {
-        (*fila)->cartoes[(*fila)->tail] = *cartao;
+        (*fila)->cartoes[(*fila)->tail] = cartao;
         (*fila)->tail++;
         (*fila)->tamanho++;
     }
