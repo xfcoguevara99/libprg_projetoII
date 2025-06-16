@@ -5,12 +5,12 @@
 #include "cartao.h"
 
 #include <stdlib.h>
-
+#include "pilha.h"
 typedef struct cartao{
     char *nome;
     char *descripcao_problema;
     int prioridade;
-    char **pilha_acoes;
+    pilha_acoes *pilha_acoes;
     int ordem;
 }cartao_n;
 
@@ -25,4 +25,8 @@ void apagar_cartao(cartao_n **cartao) {
     free((*cartao)->pilha_acoes);
     free(*cartao);
     *cartao = NULL;
+}
+
+void inserir_acoes(cartao_n **cartao,pilha_acoes **pilha) {
+    (*cartao)->pilha_acoes = *pilha;
 }
