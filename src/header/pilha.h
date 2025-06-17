@@ -22,7 +22,7 @@ void cadastrar_acao(pilha_acoes *pilha, char *descricao);
 
 void desfazer_acao(pilha_acoes **pilha);
 
-void salvar_pilha(FILE *arquivo,pilha_acoes pilha);
+void salvar_pilha(FILE *arquivo, pilha_acoes pilha);
 
 pilha_acoes *leer_pilha(FILE *arquivo);
 #endif //PILHA_H

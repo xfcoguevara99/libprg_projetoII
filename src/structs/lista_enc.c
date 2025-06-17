@@ -20,7 +20,7 @@ void adicionar_no(no **head, cartao_n *cartao) {
 }
 
 void salvar_lista_encadeada(no *lista) {
-    FILE *arquivo = fopen("lista_atendimentos_finalizados.bin","wb");
+    FILE *arquivo = fopen("lista_atendimentos_finalizados.bin", "wb");
     no *no_atual = lista;
     while (no_atual != NULL) {
         fwrite(&no_atual->cartao, sizeof(cartao_n), 1, arquivo);
@@ -30,27 +30,23 @@ void salvar_lista_encadeada(no *lista) {
 }
 
 no *ler_lista_encadeada(FILE *arquivo) {
-    no *inicio = NULL;
-    no *fim = NULL;
+    no *head = NULL;
+    //no *fim = NULL;
     cartao_n temp;
 
     while (fread(&temp, sizeof(cartao_n), 1, arquivo) == 1) {
         no *novo = malloc(sizeof(no));
         if (!novo) {
-            perror("Erro ao alocar memória para nó");
+            perror("Erro ao alocar memoria para no");
             exit(EXIT_FAILURE);
         }
         novo->cartao = temp;
-        novo->cartao_proximo = NULL;
-
-        if (inicio == NULL) {
-            inicio = novo;
-            fim = novo;
-        } else {
-            fim->cartao_proximo = novo;
-            fim = novo;
+        if (head == NULL) {
+            novo->cartao_proximo = NULL;
         }
+        novo->cartao_proximo = head;
+        head = novo;
     }
+        return head;
 
-    return inicio;
 }

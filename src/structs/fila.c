@@ -41,12 +41,12 @@ cartao_n *proximo_da_fila(fila_t **fila) {
 
 void salvar_fila(fila_t *fila) {
     FILE *arquivo = fopen("fila_atendimentos.bin", "wb");
-    fwrite(&fila->tamanho,sizeof(int),1,arquivo);
-    fwrite(&fila->head,sizeof(int),1,arquivo);
-    fwrite(&fila->tail,sizeof(int),1,arquivo);
+    fwrite(&fila->tamanho, sizeof(int), 1, arquivo);
+    fwrite(&fila->head, sizeof(int), 1, arquivo);
+    fwrite(&fila->tail, sizeof(int), 1, arquivo);
     for (int i = fila->head; i < fila->tail; i++) {
         cartao_n *cartao = fila->cartoes[i];
-        salvar_cartao(arquivo,cartao);
+        salvar_cartao(arquivo, cartao);
         // fwrite(cartao->nome,sizeof(cartao->nome),1,arquivo);
         // fwrite(cartao->descripcao_problema,sizeof(cartao->descripcao_problema),1,arquivo);
         // fwrite(&cartao->prioridade,sizeof(int),1,arquivo);
@@ -56,7 +56,7 @@ void salvar_fila(fila_t *fila) {
 
 fila_t *ler_fila_atendimento() {
     FILE *arquivo = fopen("fila_atendimentos.bin", "rb");
-    int tamanho,head,tail;
+    int tamanho, head, tail;
     fread(&tamanho, sizeof(int), 1, arquivo);
     fread(&head, sizeof(int), 1, arquivo);
     fread(&tail, sizeof(int), 1, arquivo);

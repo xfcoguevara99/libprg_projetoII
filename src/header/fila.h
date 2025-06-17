@@ -5,13 +5,14 @@
 #ifndef FILA_H
 #define FILA_H
 #define CAPACIDADE_INICIAL_FILA 40
+
 typedef struct fila {
     int tamanho;
     int head;
     int tail;
     cartao_n *cartoes[CAPACIDADE_INICIAL_FILA];
     int capacidade;
-}fila_t;
+} fila_t;
 
 fila_t *criar_fila();
 

@@ -8,26 +8,24 @@
 #include <stdlib.h>
 #include <string.h>
 
-cartao_n *criar_cartao(char *nome,char *descricao,int prioridade) {
+cartao_n *criar_cartao(char *nome, char *descricao, int prioridade) {
     cartao_n *cartao = malloc(sizeof(cartao_n));
-    strcpy(cartao->nome,nome);
-    strcpy(cartao->descripcao_problema,descricao);
+    strcpy(cartao->nome, nome);
+    strcpy(cartao->descripcao_problema, descricao);
     cartao->prioridade = prioridade;
     return cartao;
 }
-void salvar_cartao(FILE *arquivo,cartao_n *cartao) {
-    fwrite(cartao->nome,sizeof(cartao->nome),1,arquivo);
-    fwrite(cartao->descripcao_problema,sizeof(cartao->descripcao_problema),1,arquivo);
-    fwrite(&cartao->prioridade,sizeof(int),1,arquivo);
+
+void salvar_cartao(FILE *arquivo, cartao_n *cartao) {
+    fwrite(cartao->nome, sizeof(cartao->nome), 1, arquivo);
+    fwrite(cartao->descripcao_problema, sizeof(cartao->descripcao_problema), 1, arquivo);
+    fwrite(&cartao->prioridade, sizeof(int), 1, arquivo);
 }
 
 cartao_n *ler_cartao(FILE *arquivo) {
     cartao_n *cartao = malloc(sizeof(cartao_n));
-    fread(&cartao->nome,32,1,arquivo);
-    fread(&cartao->descripcao_problema,512,1,arquivo);
-    fread(&cartao->prioridade,sizeof(int),1,arquivo);
+    fread(&cartao->nome, 32, 1, arquivo);
+    fread(&cartao->descripcao_problema, 512, 1, arquivo);
+    fread(&cartao->prioridade, sizeof(int), 1, arquivo);
     return cartao;
 }
-
-
-

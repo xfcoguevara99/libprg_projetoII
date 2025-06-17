@@ -8,7 +8,7 @@
 
 
 pilha_acoes *criar_pilha() {
-    pilha_acoes *pilha = (pilha_acoes*)malloc(sizeof(pilha_acoes));
+    pilha_acoes *pilha = (pilha_acoes *) malloc(sizeof(pilha_acoes));
     pilha->topo = -1;
     pilha->capacidade = CAPACIDADE_INICIAL_PILHA;
     return pilha;
@@ -34,19 +34,18 @@ void desfazer_acao(pilha_acoes **pilha) {
     }
 }
 
-void salvar_pilha(FILE *arquivo,pilha_acoes pilha) {
-    fwrite(&pilha.topo,sizeof(int),1,arquivo);
-    for (int i=0;i<= pilha.topo;i++) {
-        fwrite(pilha.acoes[i],TAMANHO_DA_STRING,1,arquivo);
+void salvar_pilha(FILE *arquivo, pilha_acoes pilha) {
+    fwrite(&pilha.topo, sizeof(int), 1, arquivo);
+    for (int i = 0; i <= pilha.topo; i++) {
+        fwrite(pilha.acoes[i],TAMANHO_DA_STRING, 1, arquivo);
     }
 }
 
 pilha_acoes *leer_pilha(FILE *arquivo) {
     pilha_acoes *pilha = malloc(sizeof(pilha_acoes));
-    fread(&pilha->topo,sizeof(int),1,arquivo);
-    for (int i=0; i<= pilha->topo;i++) {
-        fread(pilha->acoes[i],TAMANHO_DA_STRING,1,arquivo);
+    fread(&pilha->topo, sizeof(int), 1, arquivo);
+    for (int i = 0; i <= pilha->topo; i++) {
+        fread(pilha->acoes[i],TAMANHO_DA_STRING, 1, arquivo);
     }
     return pilha;
 }
-
