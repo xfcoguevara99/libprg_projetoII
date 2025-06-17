@@ -15,12 +15,10 @@ cartao_n *criar_cartao(char *nome,char *descricao,int prioridade) {
     cartao->prioridade = prioridade;
     return cartao;
 }
-void salvar_cartao(cartao_n *cartao) {
-    FILE *arquivo = fopen("fila_atendimentos.bin","wb");
+void salvar_cartao(FILE *arquivo,cartao_n *cartao) {
     fwrite(cartao->nome,sizeof(cartao->nome),1,arquivo);
     fwrite(cartao->descripcao_problema,sizeof(cartao->descripcao_problema),1,arquivo);
     fwrite(&cartao->prioridade,sizeof(int),1,arquivo);
-    fclose(arquivo);
 }
 
 cartao_n *ler_cartao(FILE *arquivo) {

@@ -46,9 +46,10 @@ void salvar_fila(fila_t *fila) {
     fwrite(&fila->tail,sizeof(int),1,arquivo);
     for (int i = fila->head; i < fila->tail; i++) {
         cartao_n *cartao = fila->cartoes[i];
-        fwrite(cartao->nome,sizeof(cartao->nome),1,arquivo);
-        fwrite(cartao->descripcao_problema,sizeof(cartao->descripcao_problema),1,arquivo);
-        fwrite(&cartao->prioridade,sizeof(int),1,arquivo);
+        salvar_cartao(arquivo,cartao);
+        // fwrite(cartao->nome,sizeof(cartao->nome),1,arquivo);
+        // fwrite(cartao->descripcao_problema,sizeof(cartao->descripcao_problema),1,arquivo);
+        // fwrite(&cartao->prioridade,sizeof(int),1,arquivo);
     }
     fclose(arquivo);
 }
@@ -61,12 +62,9 @@ fila_t *ler_fila_atendimento() {
     fread(&tail, sizeof(int), 1, arquivo);
     fila_t *fila = criar_fila();
     for (int i = 0; i < tamanho; i++) {
-        cartao_n *cartao = malloc(sizeof(cartao_n));
-        fread(cartao->nome,32,1,arquivo);
-        fread(cartao->descripcao_problema,512,1,arquivo);
-        fread(&cartao->prioridade,sizeof(int),1,arquivo);
+        cartao_n *cartao = ler_cartao(arquivo);
         fila->cartoes[fila->tail++] = cartao;
-        fila->tamanho++;
+        //fila->tamanho++;
     }
     fclose(arquivo);
     return fila;

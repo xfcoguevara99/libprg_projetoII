@@ -7,19 +7,50 @@
 #include <stdlib.h>
 
 
-typedef struct no_lista_enc {
-    cartao_n *dados;
-    no *proximo;
-} no;
-
 void adicionar_no(no **head, cartao_n *cartao) {
     no *novo_no = (no *) malloc(sizeof(no));
     //novo_no->dados = malloc(sizeof(cartao));
-    novo_no->dados = cartao;
+    novo_no->cartao = *cartao;
     if (*head == NULL) {
-        novo_no->proximo = NULL;
+        novo_no->cartao_proximo = NULL;
     } else {
-        novo_no->proximo = *head;
+        novo_no->cartao_proximo = *head;
     }
     *head = novo_no;
+}
+
+void salvar_lista_encadeada(no *lista) {
+    FILE *arquivo = fopen("lista_atendimentos_finalizados.bin","wb");
+    no *no_atual = lista;
+    while (no_atual != NULL) {
+        fwrite(&no_atual->cartao, sizeof(cartao_n), 1, arquivo);
+        no_atual = no_atual->cartao_proximo;
+    }
+    fclose(arquivo);
+}
+
+no *ler_lista_encadeada(FILE *arquivo) {
+    no *inicio = NULL;
+    no *fim = NULL;
+    cartao_n temp;
+
+    while (fread(&temp, sizeof(cartao_n), 1, arquivo) == 1) {
+        no *novo = malloc(sizeof(no));
+        if (!novo) {
+            perror("Erro ao alocar memória para nó");
+            exit(EXIT_FAILURE);
+        }
+        novo->cartao = temp;
+        novo->cartao_proximo = NULL;
+
+        if (inicio == NULL) {
+            inicio = novo;
+            fim = novo;
+        } else {
+            fim->cartao_proximo = novo;
+            fim = novo;
+        }
+    }
+
+    return inicio;
 }
