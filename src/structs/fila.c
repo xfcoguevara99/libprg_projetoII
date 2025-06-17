@@ -6,14 +6,6 @@
 #include <stdlib.h>
 #include "cartao.h"
 
-typedef struct fila {
-    cartao_n *cartoes[CAPACIDADE_INICIAL_FILA];
-    int head;
-    int tail;
-    int capacidade;
-    int tamanho;
-} fila_t;
-
 fila_t *criar_fila() {
     fila_t *fila = (fila_t *) malloc(sizeof(fila_t));
     fila->head = 0;
@@ -45,4 +37,37 @@ cartao_n *proximo_da_fila(fila_t **fila) {
     (*fila)->head++;
     (*fila)->tamanho--;
     return proximo_cartao;
+}
+
+void salvar_fila(fila_t *fila) {
+    FILE *arquivo = fopen("fila_atendimentos.bin", "wb");
+    fwrite(&fila->tamanho,sizeof(int),1,arquivo);
+    fwrite(&fila->head,sizeof(int),1,arquivo);
+    fwrite(&fila->tail,sizeof(int),1,arquivo);
+    for (int i = fila->head; i < fila->tail; i++) {
+        cartao_n *cartao = fila->cartoes[i];
+        fwrite(cartao->nome,sizeof(cartao->nome),1,arquivo);
+        fwrite(cartao->descripcao_problema,sizeof(cartao->descripcao_problema),1,arquivo);
+        fwrite(&cartao->prioridade,sizeof(int),1,arquivo);
+    }
+    fclose(arquivo);
+}
+
+fila_t *ler_fila_atendimento() {
+    FILE *arquivo = fopen("fila_atendimentos.bin", "rb");
+    int tamanho,head,tail;
+    fread(&tamanho, sizeof(int), 1, arquivo);
+    fread(&head, sizeof(int), 1, arquivo);
+    fread(&tail, sizeof(int), 1, arquivo);
+    fila_t *fila = criar_fila();
+    for (int i = 0; i < tamanho; i++) {
+        cartao_n *cartao = malloc(sizeof(cartao_n));
+        fread(cartao->nome,32,1,arquivo);
+        fread(cartao->descripcao_problema,512,1,arquivo);
+        fread(&cartao->prioridade,sizeof(int),1,arquivo);
+        fila->cartoes[fila->tail++] = cartao;
+        fila->tamanho++;
+    }
+    fclose(arquivo);
+    return fila;
 }

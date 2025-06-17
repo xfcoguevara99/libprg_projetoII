@@ -6,16 +6,11 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct pilha {
-    char acoes[CAPACIDADE_INICIAL_PILHA][200];
-    int topo;
-    int capacidade;
-} pilha_acoes;
-
 pilha_acoes *criar_pilha() {
     pilha_acoes *pilha = (pilha_acoes*)malloc(sizeof(pilha_acoes));
     pilha->topo = -1;
     pilha->capacidade = CAPACIDADE_INICIAL_PILHA;
+    return pilha;
 }
 
 void cadastrar_acao(pilha_acoes **pilha, char *descricao) {

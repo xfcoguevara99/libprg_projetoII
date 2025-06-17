@@ -3,23 +3,33 @@
 //
 
 #include "cartao.h"
+
+#include <stdio.h>
 #include <stdlib.h>
-#include "pilha.h"
 #include <string.h>
 
-typedef struct cartao {
-    char nome[32];
-    char descripcao_problema[512];
-    int prioridade;
-    pilha_acoes *acoes;
-} cartao_n;
-
-cartao_n criar_cartao(char nome[],char descricao[],int prioridade) {
-    cartao_n cartao;
-    strcpy(cartao.nome,nome);
-    strcpy(cartao.descripcao_problema,descricao);
-    cartao.prioridade = prioridade;
+cartao_n *criar_cartao(char *nome,char *descricao,int prioridade) {
+    cartao_n *cartao = malloc(sizeof(cartao_n));
+    strcpy(cartao->nome,nome);
+    strcpy(cartao->descripcao_problema,descricao);
+    cartao->prioridade = prioridade;
     return cartao;
 }
+void salvar_cartao(cartao_n *cartao) {
+    FILE *arquivo = fopen("fila_atendimentos.bin","wb");
+    fwrite(cartao->nome,sizeof(cartao->nome),1,arquivo);
+    fwrite(cartao->descripcao_problema,sizeof(cartao->descripcao_problema),1,arquivo);
+    fwrite(&cartao->prioridade,sizeof(int),1,arquivo);
+    fclose(arquivo);
+}
+
+cartao_n *ler_cartao(FILE *arquivo) {
+    cartao_n *cartao = malloc(sizeof(cartao_n));
+    fread(&cartao->nome,32,1,arquivo);
+    fread(&cartao->descripcao_problema,512,1,arquivo);
+    fread(&cartao->prioridade,sizeof(int),1,arquivo);
+    return cartao;
+}
+
 
 
