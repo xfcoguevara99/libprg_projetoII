@@ -8,12 +8,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-cartao_n *criar_cartao(char *nome, char *descricao, int prioridade) {
-    cartao_n *cartao = malloc(sizeof(cartao_n));
+void criar_cartao(cartao_n *cartao,char *nome, char *descricao, int prioridade) {
+    //cartao_n *cartao = malloc(sizeof(cartao_n));
     strcpy(cartao->nome, nome);
     strcpy(cartao->descripcao_problema, descricao);
     cartao->prioridade = prioridade;
-    return cartao;
 }
 
 void salvar_cartao(FILE *arquivo, cartao_n *cartao) {

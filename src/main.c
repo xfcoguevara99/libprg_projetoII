@@ -43,6 +43,5 @@ int main() {
     FILE *arquivo_leitura2 = fopen("lista_atendimentos_finalizados.bin", "rb");
     no *lista_encadeada_2 = ler_lista_encadeada(arquivo_leitura2);
     fclose(arquivo_leitura);
-
     return 0;
 };

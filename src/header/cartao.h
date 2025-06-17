@@ -14,7 +14,7 @@ typedef struct cartao {
     pilha_acoes acoes;
 } cartao_n;
 
-cartao_n *criar_cartao(char *nome, char *descricao, int prioridade);
+void criar_cartao(cartao_n *cartao,char *nome, char *descricao, int prioridade);
 
 cartao_n *ler_cartao(FILE *arquivo);
 
