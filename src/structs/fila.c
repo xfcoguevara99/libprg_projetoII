@@ -66,6 +66,9 @@ fila_t *ler_fila_atendimento() {
         fila->cartoes[fila->tail++] = cartao;
         //fila->tamanho++;
     }
+    fila->tamanho = tamanho;
+    fila->head = head;
+    fila->tail = tail;
     fclose(arquivo);
     return fila;
 }
