@@ -59,7 +59,7 @@ fila_t *ler_fila_atendimento() {
     FILE *arquivo = fopen("fila_atendimentos.bin", "rb");
     if (arquivo == NULL) {
         perror("Erro ao abrir arquivo");
-        return;
+        return NULL;
     }
     int tamanho, head, tail;
     fread(&tamanho, sizeof(int), 1, arquivo);
