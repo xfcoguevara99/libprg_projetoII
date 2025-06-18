@@ -41,6 +41,9 @@ cartao_n *proximo_da_fila(fila_t **fila) {
 
 void salvar_fila(fila_t *fila) {
     FILE *arquivo = fopen("fila_atendimentos.bin", "wb");
+    if (arquivo == NULL) {
+        perror("Erro ao abrir arquivo");
+        return;
     fwrite(&fila->tamanho, sizeof(int), 1, arquivo);
     fwrite(&fila->head, sizeof(int), 1, arquivo);
     fwrite(&fila->tail, sizeof(int), 1, arquivo);
@@ -56,6 +59,9 @@ void salvar_fila(fila_t *fila) {
 
 fila_t *ler_fila_atendimento() {
     FILE *arquivo = fopen("fila_atendimentos.bin", "rb");
+    if (arquivo == NULL) {
+        perror("Erro ao abrir arquivo");
+        return;
     int tamanho, head, tail;
     fread(&tamanho, sizeof(int), 1, arquivo);
     fread(&head, sizeof(int), 1, arquivo);
