@@ -44,15 +44,13 @@ void salvar_fila(fila_t *fila) {
     if (arquivo == NULL) {
         perror("Erro ao abrir arquivo");
         return;
+    }
     fwrite(&fila->tamanho, sizeof(int), 1, arquivo);
     fwrite(&fila->head, sizeof(int), 1, arquivo);
     fwrite(&fila->tail, sizeof(int), 1, arquivo);
     for (int i = fila->head; i < fila->tail; i++) {
         cartao_n *cartao = fila->cartoes[i];
         salvar_cartao(arquivo, cartao);
-        // fwrite(cartao->nome,sizeof(cartao->nome),1,arquivo);
-        // fwrite(cartao->descripcao_problema,sizeof(cartao->descripcao_problema),1,arquivo);
-        // fwrite(&cartao->prioridade,sizeof(int),1,arquivo);
     }
     fclose(arquivo);
 }
