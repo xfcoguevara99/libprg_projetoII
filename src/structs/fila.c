@@ -60,6 +60,7 @@ fila_t *ler_fila_atendimento() {
     if (arquivo == NULL) {
         perror("Erro ao abrir arquivo");
         return;
+    }
     int tamanho, head, tail;
     fread(&tamanho, sizeof(int), 1, arquivo);
     fread(&head, sizeof(int), 1, arquivo);
