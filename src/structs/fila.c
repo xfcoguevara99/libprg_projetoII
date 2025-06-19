@@ -52,6 +52,7 @@ void salvar_fila(fila_t *fila) {
         cartao_n *cartao = fila->cartoes[i];
         salvar_cartao(arquivo, cartao);
     }
+    printf("passo na funcao salvar fila");
     fflush(arquivo);
     fclose(arquivo);
 }

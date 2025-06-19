@@ -19,6 +19,7 @@ void salvar_cartao(FILE *arquivo, cartao_n *cartao) {
     fwrite(cartao->nome, sizeof(cartao->nome), 1, arquivo);
     fwrite(cartao->descripcao_problema, sizeof(cartao->descripcao_problema), 1, arquivo);
     fwrite(&cartao->prioridade, sizeof(int), 1, arquivo);
+    printf("passo na funcao salvar cartao");
 }
 
 cartao_n *ler_cartao(FILE *arquivo) {
