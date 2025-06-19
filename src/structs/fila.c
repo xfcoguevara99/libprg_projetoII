@@ -39,8 +39,7 @@ cartao_n *proximo_da_fila(fila_t **fila) {
     return proximo_cartao;
 }
 
-void salvar_fila(fila_t *fila) {
-    FILE *arquivo = fopen("fila_atendimentos.bin", "wb");
+void salvar_fila(fila_t *fila,FILE *arquivo) {
     if (arquivo == NULL) {
         perror("Erro ao abrir arquivo");
         return;
@@ -53,8 +52,6 @@ void salvar_fila(fila_t *fila) {
         salvar_cartao(arquivo, cartao);
     }
     printf("passo na funcao salvar fila");
-    fflush(arquivo);
-    fclose(arquivo);
 }
 
 fila_t *ler_fila_atendimento() {

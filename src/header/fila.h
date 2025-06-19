@@ -20,7 +20,7 @@ void adicionar_na_fila(fila_t **fila, cartao_n *cartao);
 
 cartao_n *proximo_da_fila(fila_t **fila);
 
-void salvar_fila(fila_t *fila);
+void salvar_fila(fila_t *fila,FILE *arquivo);
 
 fila_t *ler_fila_atendimento();
 #endif //FILA_H
