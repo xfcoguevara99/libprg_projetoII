@@ -31,7 +31,7 @@ int main() {
     FILE *arquivo_leitura = fopen("fila_atendimentos.bin", "rb");
     cartao_n *cartao3 = ler_cartao(arquivo_leitura);
     fclose(arquivo_leitura);
-    salvar_fila(fila);
+    //salvar_fila(fila);
     free(fila);
     fila_t *fila2 = ler_fila_atendimento();
 

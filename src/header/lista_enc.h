@@ -14,5 +14,5 @@ void adicionar_no(no **head, cartao_n *cartao);
 
 void salvar_lista_encadeada(no *lista);
 
-no *ler_lista_encadeada(FILE *arquivo);
+no *ler_lista_encadeada();
 #endif //LISTA_ENC_H

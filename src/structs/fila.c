@@ -20,11 +20,10 @@ void adicionar_na_fila(fila_t **fila, cartao_n *cartao) {
         printf("Erro: Fila cheia (overflow)");
         exit(EXIT_FAILURE);
     }
-    if ((*fila)->cartoes[(*fila)->tail] != NULL) {
-        (*fila)->cartoes[(*fila)->tail] = cartao;
-        (*fila)->tail++;
-        (*fila)->tamanho++;
-    }
+    (*fila)->cartoes[(*fila)->tail] = cartao;
+    (*fila)->tail++;
+    (*fila)->tamanho++;
+
 }
 
 cartao_n *proximo_da_fila(fila_t **fila) {
@@ -40,30 +39,27 @@ cartao_n *proximo_da_fila(fila_t **fila) {
 }
 
 void salvar_fila(fila_t *fila,FILE *arquivo) {
-    if (arquivo == NULL) {
-        perror("Erro ao abrir arquivo");
-        return;
+
+    if (fwrite(&fila->tamanho, sizeof(int), 1, arquivo)!=1) {
+        printf("Erro ao gravar o tamnaho da fila\n");
     }
-    fwrite(&fila->tamanho, sizeof(int), 1, arquivo);
-    fwrite(&fila->head, sizeof(int), 1, arquivo);
-    fwrite(&fila->tail, sizeof(int), 1, arquivo);
-    for (int i = fila->head; i < fila->tail; i++) {
-        cartao_n *cartao = fila->cartoes[i];
+    for (int i = 0; i < fila->tamanho; i++) {
+        cartao_n *cartao = fila->cartoes[fila->head + i];
         salvar_cartao(arquivo, cartao);
     }
-    printf("passo na funcao salvar fila");
+
 }
 
 fila_t *ler_fila_atendimento() {
     FILE *arquivo = fopen("fila_atendimentos.bin", "rb");
     if (arquivo == NULL) {
-        perror("Erro ao abrir arquivo");
+        perror("Erro ao abrir arquivo fila_atendimentos.bin");
         return NULL;
     }
     int tamanho, head, tail;
     fread(&tamanho, sizeof(int), 1, arquivo);
-    fread(&head, sizeof(int), 1, arquivo);
-    fread(&tail, sizeof(int), 1, arquivo);
+    /*fread(&head, sizeof(int), 1, arquivo);
+    fread(&tail, sizeof(int), 1, arquivo);*/
     fila_t *fila = criar_fila();
     for (int i = 0; i < tamanho; i++) {
         cartao_n *cartao = ler_cartao(arquivo);
@@ -71,8 +67,8 @@ fila_t *ler_fila_atendimento() {
         //fila->tamanho++;
     }
     fila->tamanho = tamanho;
-    fila->head = head;
-    fila->tail = tail;
+    fila->head = 0;
+    fila->tail = tamanho;
     fclose(arquivo);
     return fila;
 }
