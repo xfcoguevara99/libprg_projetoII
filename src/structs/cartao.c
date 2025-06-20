@@ -8,8 +8,6 @@
 #include <string.h>
 
 void criar_cartao(cartao_n *cartao, char *nome, char *descricao, int prioridade) {
-    //Lembrar trocar nome para preencher cartao...
-    //cartao_n *cartao = malloc(sizeof(cartao_n));
     strcpy(cartao->nome, nome);
     strcpy(cartao->descripcao_problema, descricao);
     cartao->prioridade = prioridade;

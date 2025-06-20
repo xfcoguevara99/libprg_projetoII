@@ -18,7 +18,7 @@ fila_t *criar_fila() {
 void adicionar_na_fila(fila_t **fila, cartao_n *cartao) {
     if ((*fila)->tamanho == (*fila)->capacidade) {
         printf("Erro: Fila cheia (overflow)");
-        exit(EXIT_FAILURE);
+        return;
     }
     (*fila)->cartoes[(*fila)->tail] = cartao;
     (*fila)->tail++;
@@ -28,8 +28,8 @@ void adicionar_na_fila(fila_t **fila, cartao_n *cartao) {
 
 cartao_n *proximo_da_fila(fila_t **fila) {
     if ((*fila)->tamanho == 0) {
-        printf("Error: fila vazia");
-        exit(EXIT_FAILURE);
+        printf("Fila de atendimento vazia..\n");
+        return NULL;
     }
     cartao_n *proximo_cartao = (*fila)->cartoes[(*fila)->head];
     (*fila)->cartoes[(*fila)->head] = NULL;
@@ -54,21 +54,30 @@ fila_t *ler_fila_atendimento() {
     FILE *arquivo = fopen("fila_atendimentos.bin", "rb");
     if (arquivo == NULL) {
         perror("Erro ao abrir arquivo fila_atendimentos.bin");
-        return NULL;
+        exit(EXIT_FAILURE);
     }
     int tamanho, head, tail;
     fread(&tamanho, sizeof(int), 1, arquivo);
-    /*fread(&head, sizeof(int), 1, arquivo);
-    fread(&tail, sizeof(int), 1, arquivo);*/
+    if (tamanho==0) {
+        printf("Nao tem chamada para ser atendida...\n");
+        return NULL;
+    }
     fila_t *fila = criar_fila();
     for (int i = 0; i < tamanho; i++) {
         cartao_n *cartao = ler_cartao(arquivo);
         fila->cartoes[fila->tail++] = cartao;
-        //fila->tamanho++;
     }
     fila->tamanho = tamanho;
     fila->head = 0;
     fila->tail = tamanho;
     fclose(arquivo);
     return fila;
+}
+
+void liberar_fila(fila_t **fila) {
+    for (int i= 0; i<(*fila)->tamanho;i++) {
+        free((*fila)->cartoes[(*fila)->head+i]);
+    }
+    free(*fila);
+    *fila = NULL;
 }

@@ -9,7 +9,6 @@
 
 void adicionar_no(no **head, cartao_n *cartao) {
     no *novo_no = (no *) malloc(sizeof(no));
-    //novo_no->dados = malloc(sizeof(cartao));
     novo_no->cartao = *cartao;
     if (*head == NULL) {
         novo_no->cartao_proximo = NULL;
@@ -45,10 +44,6 @@ no *ler_lista_encadeada() {
 
     while (fread(&temp, sizeof(cartao_n), 1, arquivo) == 1) {
         no *novo = malloc(sizeof(no));
-        if (!novo) {
-            perror("Erro ao alocar memoria para no");
-            exit(EXIT_FAILURE);
-        }
         novo->cartao = temp;
         if (head == NULL) {
             novo->cartao_proximo = NULL;
@@ -56,7 +51,16 @@ no *ler_lista_encadeada() {
         novo->cartao_proximo = head;
         head = novo;
     }
-        return head;
     fflush(arquivo);
     fclose(arquivo);
+    return head;
+}
+
+void liberar_lista_encadeada(no **head) {
+    no *no_atual = *head;
+    while (no_atual != NULL) {
+        no *no_temp = no_atual->cartao_proximo;
+        free(no_atual);
+        no_atual = no_temp;
+    }
 }

@@ -15,6 +15,7 @@ pilha_acoes *criar_pilha() {
 }
 
 void cadastrar_acao(pilha_acoes *pilha, char *descricao) {
+
     int topo = (*pilha).topo + 1;
     if ((*pilha).topo != (*pilha).capacidade) {
         strcpy((*pilha).acoes[topo], descricao);
@@ -29,9 +30,11 @@ void desfazer_acao(pilha_acoes **pilha) {
     if ((*pilha)->topo >= 0) {
         (*pilha)->topo--;
     } else {
-        printf("Pilha vazia.");
+        printf("Pilha vazia.\n");
         printf("Nehuma acao cadastrada.");
+        return;
     }
+    printf("Acao removida com sucesso.\n");
 }
 
 void salvar_pilha(FILE *arquivo, pilha_acoes pilha) {

@@ -23,4 +23,6 @@ cartao_n *proximo_da_fila(fila_t **fila);
 void salvar_fila(fila_t *fila,FILE *arquivo);
 
 fila_t *ler_fila_atendimento();
+
+void liberar_fila(fila_t **fila);
 #endif //FILA_H
