@@ -11,7 +11,6 @@ void inicializar_estatisticas() {
     estatisticas *info = malloc(sizeof(estatisticas));
     info->atendimentos_totais = 0;
     info->tempo_total = 0;
-    info->acoes.topo = -1;
     salvar_estatisticas(info);
     free(info);
 }
