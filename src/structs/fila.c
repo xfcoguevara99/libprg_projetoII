@@ -59,7 +59,6 @@ fila_t *ler_fila_atendimento() {
     int tamanho, head, tail;
     fread(&tamanho, sizeof(int), 1, arquivo);
     if (tamanho==0) {
-        printf("Nao tem chamada para ser atendida...\n");
         return NULL;
     }
     fila_t *fila = criar_fila();
